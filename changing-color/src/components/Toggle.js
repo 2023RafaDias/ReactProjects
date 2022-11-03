@@ -1,29 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const green = '#39D1B4';
+const blue = '#2222FF';
 const yellow = '#FFD712';
 
-export class Toggle extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {color:green};
-        this.changeColor = this.changeColor.bind(this);
+export function Toggle (){
+    const [color, setColor] = useState(blue);
+
+    changeColor = () => {
+        const newColor = prevColor == blue ? yellow : blue;
+        setColor(newColor);
     }
 
-    changeColor(){
-        const newColor = this.state.color == green ? yellow : green;
-        this.setState({ color: newColor});
-    }
-    render(){
         return(
-            <div style={{background:this.state.color}}>
+            <div style={{background:prevColor}}>
                 <h1>
-                    Change My Color
+                    Change Mr.Oscar's Mood
                 </h1>
-                <button onClick={this.changeColor}>
-                    Change color
+                <button className = 'btn' onClick={toggle.changeColor}>
+                    Change Mood
                 </button>
+                {prevColor == blue? <h2>I am Sad</h2> : <h2>I am Happy</h2>}
             </div>
         );
     }
-}
